@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="utf-8" />
+    <title>Space Rangers</title>
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body>
+
+    <div class="user-panel">
+        <div class="user-panel__container container">
+            <div class="game-title">
+                Space Rangers
+            </div>
+
+            <div class="user-message">
+                <div id="userMessage">
+                    Космические рейнджеры
+                </div>
+
+                <div class="game-result" id="gameResult">
+                    <div class="game-result__container container" id="gameResultcontainer">
+                        <div class="user-count">
+                            Счет: <span id="userCount">0</span>
+                        </div>
+
+                        <button class="new-game-btn" id="startNewRound">
+                            Новая игра?
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-sangers-game container">
+        <table class="game-area" id="gameArea"></table>
+    </div>
+
+    <audio id="shotSound" src="sound/shot.mp3"></audio>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

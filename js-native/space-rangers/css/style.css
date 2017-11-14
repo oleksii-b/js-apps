@@ -1,0 +1,187 @@
+body {
+    background: #212733;
+    font-family: Verdana, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    }
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    }
+
+.space-sangers-game,
+.user-panel {
+    min-width: 860px;
+    }
+
+.user-panel {
+    background: #212733;
+    box-shadow: 0 0 10px 0 #666;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    }
+
+.space-sangers-game {
+    background: url(../img/space.png) center center no-repeat;
+    margin: 70px auto 0;
+    padding-bottom: 50px;
+    position: relative;
+    }
+
+.user-panel {
+    color: rgb(135, 204, 255);
+    font-weight: 600;
+    position: fixed;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+    }
+
+.user-panel__container {
+    display: table;
+    min-height: 70px;
+    }
+
+.game-title,
+.user-message {
+    display: table-cell;
+    padding: 10px;
+    text-align: center;
+    }
+
+.game-title {
+    font-size: 36px;
+    vertical-align: top;
+    white-space: nowrap;
+    }
+
+.user-message {
+    color: rgb(236, 236, 236);
+    font-size: 20px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    width: 100%;
+    }
+
+
+/* Game Result panel */
+
+.game-result {
+    display: none;
+    }
+
+.game-result--visible {
+    display: block;
+    }
+
+.game-result__container {
+    font-size: 0;
+    text-align: justify;
+    }
+
+.game-result__container:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    }
+
+.user-count,
+.new-game-btn {
+    font-size: 20px;
+    margin: 5px 10px;
+    vertical-align: middle;
+    }
+
+.user-count {
+    color: #ccc;
+    display: inline-block;
+    font-weight: bolder;
+    margin: 10px;
+    text-transform: uppercase;
+    }
+
+.new-game-btn {
+    border-radius: 5px;
+    outline: 0;
+    padding: 5px 10px;
+    }
+
+
+/* Game Area */
+
+.game-area {
+    border-collapse: collapse;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    }
+
+.game-area--disable:after {
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+
+.game-area__horizontal-coordinate,
+.game-area__vertical-coordinate {
+    color: #ccc;
+    font-size: 26px;
+    padding: 10px;
+    }
+
+.game-area__vertical-coordinate {
+    padding-top: 30px;
+    }
+
+.game-area-cell {
+    border: 1px solid #212733;
+    cursor: pointer;
+    height: 100px;
+    transition: .5s;
+    width: 100px;
+    }
+
+.game-area-cell:hover {
+    background-color: rgba(104, 142, 218, .5);
+    }
+
+.game-area-cell:hover:before {
+    color: rgba(135, 204, 255, .75);
+    content: attr(data-coordinate); 
+    }
+
+.game-area-cell--shooted:hover {
+    background-color: transparent;
+    cursor: default;
+    }
+
+.game-area-cell--shooted:before {
+    font-size: 0;
+    cursor: default;
+    }
+
+.asteroid,
+.ship-red,
+.ship-blue {
+    background: center center no-repeat;
+    background-size: contain;
+    transition: .5s;
+    }
+
+.ship-red {
+    background-image: url(../img/ship-red.png);
+    }
+
+.ship-blue {
+    background-image: url(../img/ship-blue.png);
+    }
+
+.asteroid {
+    background-image: url(../img/asteroid.png);
+    }
