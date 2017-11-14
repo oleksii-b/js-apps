@@ -1,0 +1,181 @@
+body {
+    font: 14px Arial, sans-serif;
+    }
+
+.hidden {
+    display: none;
+    }
+
+.main-content {
+    text-align: center;
+    }
+
+.main-content__inner {
+    display: inline-block;
+    text-align: left;
+    }
+
+
+/** Add Note **/
+
+.add-note {
+    margin-top: 5px;
+    }
+
+.add-note__form {
+    text-align: center;
+    }
+
+.add-note__fieldset {
+    display: inline-block;
+    text-align: left;
+    width: 320px;
+    }
+
+.add-note__legend {
+    border: 0;
+    margin: 0;
+    position: relative;
+    top: 30px;
+    }
+
+.add-note__datepicker {
+    cursor: pointer;
+    display: inline-block;
+    width: 134px;
+    }
+
+.add-note__date {
+    display: inline-block;
+    padding: 6px 9.5px;
+    text-align: center;
+    width: auto; /**/
+    }
+
+.add-note__input {
+    margin-top: 10px;
+    max-width: 280px;
+    }
+
+.add-note__btn {
+    margin-top: 10px;
+    min-width: 80px;
+    }
+
+.error-message {
+    display: block;
+    margin-top: 5px;
+    }
+
+
+/** Calendar  **/
+
+.calendar-wrapper {
+    position: relative;
+    top: -5px;
+    }
+
+.calendar {
+    display: block;
+    left: 0;
+    padding: 5px 6.5px;
+    text-align: center;
+    top: -3px;
+    }
+
+.calendar__header {
+    padding: 10px;
+    }
+
+.calendar__control:focus,
+.calendar__control:hover {
+    text-decoration: none;
+    }
+
+.calendar__weekdays th {
+    font-size: 12px;
+    text-align: center;
+    }
+
+.calendar__date {   
+    border: 2px solid #fff;
+    color: #ccc;
+    height: 30px;
+    line-height: 28px;
+    width: 30px;
+    }
+
+.calendar__date--current-date,
+.calendar__date--current-month {
+    color: #000;
+    cursor: pointer;
+    transition: background .25s;
+    }
+
+.calendar__date--current-date:hover,
+.calendar__date--current-month:hover {
+    background: #eee;
+    }
+
+.calendar__date--current-date {
+    position: relative;
+    }
+
+.calendar__date--current-date:after {
+    border: 1px solid #999;
+    content: "";
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 28px;
+    }
+
+
+/** Notes **/
+
+.notes-list {
+    border-collapse: collapse;
+    margin: 15px auto;
+    width: 360px;
+    }
+
+.notes-list > tbody > tr > td {
+    padding: 12px 6px;
+    }
+
+.note-date-legend {
+    text-align: center;
+    width: 90px;
+    }
+
+.note-text-legend {
+    text-align: center;
+    width: 260px;
+    }
+
+.note-options-legend {
+    width: 70px;
+    }
+
+.note-text__inner {
+    position: relative;
+    }
+
+.empty-list {
+    padding: 15px;
+    text-align: center;
+    }
+
+.edit-note {
+    margin: -8px 0;
+    margin-left: -10px;
+    padding: 5px;
+    }
+
+.edit-note__input {
+    font: 14px Arial, sans-serif;
+    margin-bottom: 3px;
+    resize: none;
+    padding: 3px;
+    }
