@@ -1,13 +1,7 @@
-var React = require("react");
+var createReactClass = require('create-react-class'),
+    React = require('react');
 
-var Note = React.createClass({
-    propTypes: {
-        date: React.PropTypes.string.isRequired,
-        index: React.PropTypes.number.isRequired,
-        handleDelete: React.PropTypes.func.isRequired,
-        handleEdit: React.PropTypes.func.isRequired
-    },
-
+module.exports = createReactClass({
     getInitialState: function () {
         this.value = this.props.children;
 
@@ -112,5 +106,3 @@ var Note = React.createClass({
         });
     }
 });
-
-module.exports = Note;

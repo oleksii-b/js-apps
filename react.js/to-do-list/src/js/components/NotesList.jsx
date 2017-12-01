@@ -1,8 +1,9 @@
-var React = require("react"),
-    AddNote = require("./AddNote.jsx"),
-    Note = require("./Note.jsx");
+var createReactClass = require('create-react-class'),
+    React = require('react'),
+    AddNote = require('./AddNote.jsx'),
+    Note = require('./Note.jsx');
 
-var NotesList = React.createClass({
+module.exports = createReactClass({
     getInitialState: function () {
         return {
             list: []
@@ -146,5 +147,3 @@ var NotesList = React.createClass({
         }
     }
 });
-
-module.exports = NotesList;

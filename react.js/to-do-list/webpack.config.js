@@ -1,33 +1,35 @@
-var webpack = require('webpack');
+'use strict';
+
+let webpack = require('webpack');
 
 module.exports = {
-    entry: "./src/js/app.js",
+    entry: './src/js/app.js',
     output: {
         path: __dirname + '/build/js/',
-        publicPath: "build/",
-        filename: "bundle.js"
+        publicPath: 'build/',
+        filename: 'bundle.js'
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "babel",
+                loader: 'babel',
                 include: [/src/]
             },
             {
                 test: /\.jsx$/,
-                loader: "react-hot!babel",
+                loader: 'react-hot!babel',
                 exclude: [/node_modules/, /build/]
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader!autoprefixer-loader",
+                loader: 'style-loader!css-loader!autoprefixer-loader',
                 exclude: [/node_modules/, /build/]
             },
             {
                 test: /\.json$/,
-                loader: "json-loader",
-                include: "path/to/your/sources"
+                loader: 'json-loader',
+                include: 'path/to/your/sources'
             }
         ]
     }

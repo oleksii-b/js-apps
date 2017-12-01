@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "create-react-class": "*",
+    "jquery": "*",
     "react": "*",
-    "react-dom": "*",
-    "jquery": "*"
+    "react-dom": "*"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",

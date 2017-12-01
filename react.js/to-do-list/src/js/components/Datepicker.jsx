@@ -1,12 +1,8 @@
-var React = require("react"),
-    monthsList = require("json!../months-list.json");
+var createReactClass = require('create-react-class'),
+    React = require('react'),
+    monthsList = require('json!../months-list.json');
 
-var Calendar = React.createClass({
-    propTypes: {
-        setDate: React.PropTypes.func.isRequired,
-        toggleCalendar: React.PropTypes.func.isRequired
-    },
-
+module.exports = createReactClass({
     getInitialState: function () {
         return {
             currentMonth: (new Date()).getMonth(),
@@ -23,17 +19,10 @@ var Calendar = React.createClass({
             currentMonth,
             day = 0,
             i = 0,
-            lasthDate = 28,
+            lastDate = (new Date(this.state.currentYear, this.state.currentMonth + 1, 0)).getDate(),
             month = [],
             that = this,
             week = [];
-
-        // Get Last Date
-        do {
-            currentMonth = (new Date(this.state.currentYear, this.state.currentMonth, ++lasthDate)).getMonth();
-        } while (currentMonth === this.state.currentMonth);
-
-        lasthDate--;
 
         // Last Month's Days
         if (new Date(this.state.currentYear, this.state.currentMonth, 1).getDay() > 0) {
@@ -44,13 +33,13 @@ var Calendar = React.createClass({
                     month: that.state.currentMonth - 1
                 };
 
-                i--;            
+                i--;
             } while (currentDay > 0);
 
             i = 0;
         }
 
-        for (i = 1; i <= lasthDate; i++) {
+        for (i = 1; i <= lastDate; i++) {
             day = (new Date(this.state.currentYear, this.state.currentMonth, i)).getDay();
             week[day] = {
                 date: i,
@@ -62,7 +51,7 @@ var Calendar = React.createClass({
                 week = [];
             }
 
-            if (day < 6 && i === lasthDate) {
+            if (day < 6 && i === lastDate) {
                 i = 0;
                 currentDay = ++day;
 
@@ -220,5 +209,3 @@ var Calendar = React.createClass({
         );
     }
 });
-
-module.exports = Calendar;

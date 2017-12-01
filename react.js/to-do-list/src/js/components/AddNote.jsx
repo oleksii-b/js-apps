@@ -1,11 +1,8 @@
-var React = require("react"),
-    Datepicker = require("./Datepicker.jsx");
+var createReactClass = require('create-react-class'),
+    React = require('react'),
+    Datepicker = require('./Datepicker.jsx');
 
-var AddNote = React.createClass({
-    propTypes: {
-        handleAdd: React.PropTypes.func.isRequired
-    },
-
+module.exports = createReactClass({
     getInitialState: function () {
         var date = new Date();
 
@@ -99,5 +96,3 @@ var AddNote = React.createClass({
         );
     }
 });
-
-module.exports = AddNote;
