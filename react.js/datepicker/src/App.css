@@ -1,0 +1,22 @@
+.input-date {
+    margin: 10px;
+    position: relative;
+    width: 280px;
+}
+
+.input-date__group {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+}
+
+.input-date__icon {
+    bottom: 0;
+    line-height: 1;
+    padding: 6px 5px 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

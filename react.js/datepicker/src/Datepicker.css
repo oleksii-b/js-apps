@@ -1,0 +1,61 @@
+.datepicker {
+    background: #eeefff;
+    position: relative;
+    top: 5px;
+}
+
+.datepicker:after {
+    border: 10px solid transparent;
+    border-bottom-color: #eeefff;
+    border-top: 0;
+    content: '';
+    position: absolute;
+    right: 7px;
+    top: -10px;
+}
+
+.datepicker--hidden {
+    display: none;
+}
+
+.datepicker__container {
+    display: block;
+    left: 0;
+    padding: 5px 6.5px;
+    text-align: center;
+    top: -3px;
+}
+
+.datepicker__header {
+    padding: 10px;
+}
+
+.datepicker__control {
+    background: none;
+    border-radius: 2px;
+    border: 0;
+    color: #999;
+    cursor: pointer;
+    font-size: 20px;
+    height: 20px;
+    line-height: .5;
+    transform: scale(1, 1.25);
+}
+
+.datepicker__control:focus {
+    background: #ddd;
+    outline: 0;
+}
+
+.datepicker__control--prev {
+    float: left;
+}
+
+.datepicker__control--next {
+    float: right;
+}
+
+.datepicker__thead-row-item {
+    font-size: 12px;
+    text-align: center;
+}

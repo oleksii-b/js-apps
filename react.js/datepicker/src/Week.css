@@ -1,0 +1,42 @@
+.datepicker-date {
+    border: 2px solid #fff;
+    color: #ccc;
+    height: 30px;
+    line-height: 28px;
+    width: 30px;
+}
+
+.datepicker-date--current-day,
+.datepicker-date--selected-day,
+.datepicker-date--current-month {
+    color: #000;
+    cursor: pointer;
+    transition: background .25s;
+}
+
+.datepicker-date--current-day:hover,
+.datepicker-date--current-month:hover {
+    background: #eee;
+}
+
+.datepicker-date--selected-day {
+    background: #fff;
+    color: maroon;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.datepicker-date--current-day {
+    position: relative;
+}
+
+.datepicker-date--current-day:after {
+    border: 1px solid #aaa;
+    border-radius: 2px;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
