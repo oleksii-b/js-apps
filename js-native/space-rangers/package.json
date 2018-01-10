@@ -1,19 +1,27 @@
 {
   "name": "space-rangers",
-  "version": "1.0.0",
   "description": "Game 'Space Rangers' based on MVC concept",
-  "main": "index.js",
   "scripts": {
-    "start": "babel js/src -d js -w"
+    "start": "watchify --ignore js/app.bundle.js js/app.js -o js/app.bundle.js -d",
+    "build": "browserify --ignore js/app.bundle.js js/app.js -o js/app.bundle.js -d"
   },
-  "babel": {
-  "presets": ["es2015"],
-  "minified": true
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "watchify": "^3.9.0"
   }
 }

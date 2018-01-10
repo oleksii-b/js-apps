@@ -1,21 +1,22 @@
-"use strict";function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function")}}var View=function(document){var audio=document.getElementById("shotSound");var gameArea=document.getElementById("gameArea");var gameResultInner=document.getElementById("gameResultInner");var message=document.getElementById("userMessage");var messageFontSize=getComputedStyle(message).fontSize;var _ref=[],gameResultCurrentOpacity=_ref[0],increaseMessageFontSize=_ref[1],messageCurrentFontSize=_ref[2],ship=_ref[3];return{// Создание игрового поля
-createGameArea:function createGameArea(spaceSize){var initCharCode="A".codePointAt();var _ref2=["",""],gameAreaBody=_ref2[0],gameAreaHead=_ref2[1],horizontalCoordinate=_ref2[2];for(var i=0;i<spaceSize;){horizontalCoordinate=String.fromCodePoint(initCharCode+i);gameAreaHead+="<td class=\"game-area__vertical-coordinate\">"+ ++i+"</td>";gameAreaBody+="<tr><td class=\"game-area__horizontal-coordinate\">"+horizontalCoordinate+"</td>";for(var _i=0;_i<spaceSize;){gameAreaBody+="<td class=\"game-area-cell\" data-coordinate=\""+horizontalCoordinate+ ++_i+"\"></td>"}gameAreaBody+="</tr>"}gameArea.innerHTML="<thead><tr><td></td>"+gameAreaHead+"</tr></thead><tbody>"+gameAreaBody+"</tbody>"},// Отображаение счета игрока на странице
-displayGameResult:function displayGameResult(count){gameResultCurrentOpacity=gameResultInner.style.opacity=0;message.style.display="none";gameArea.className+=" game-area--disable";document.getElementById("gameResult").className+=" game-result--visible";document.getElementById("userCount").innerHTML=count;var increaseGameResultOpacity=setInterval(function(){if(gameResultCurrentOpacity/100<1){gameResultCurrentOpacity+=10;gameResultInner.style.opacity=gameResultCurrentOpacity/100}else{clearInterval(increaseGameResultOpacity)}},100/3)},// Отображаение сообщения на странице
-displayMessage:function displayMessage(messageText){messageCurrentFontSize=message.style.fontSize=0;message.innerHTML=messageText;increaseMessageFontSize=setInterval(function(){if(messageCurrentFontSize<parseInt(messageFontSize,10)){messageCurrentFontSize++;userMessage.style.fontSize=messageCurrentFontSize+"px"}else{clearInterval(increaseMessageFontSize)}},5)},// Пометка ячейки игрового поля после выполениния по ней первого выстрела
-setShootedStatus:function setShootedStatus(gameAreaCell){gameAreaCell.setAttribute("data-shot","true");gameAreaCell.className+=" game-area-cell--shooted"},// Отображаение корабля (синого или красного) в игровом поле
-showShip:function showShip(coordinate,color){ship=document.querySelector("[data-coordinate=\""+coordinate+"\"]");this.setShootedStatus(ship);if(color==="red"){ship.className+=" ship-red"}else if(color==="blue"){ship.className+=" ship-blue"}},// Отображаение астероида в случае промаха
-showAsteroid:function showAsteroid(coordinate){var gameAreaCell=document.querySelector("[data-coordinate=\""+coordinate+"\"]");this.setShootedStatus(gameAreaCell);gameAreaCell.className+=" asteroid"},// Звук выстрела
-soundShot:function soundShot(){audio.pause();audio.currentTime=0;setTimeout(function(){return audio.play()},20)}}}(document);var Model=function(){var Spaceship=function Spaceship(){_classCallCheck(this,Spaceship);color=color==="red"?"blue":"red";this.color=color;this.damage=[];this.position=[]};;var _ref3=["A".codePointAt(),[]],initCharCode=_ref3[0],spaceships=_ref3[1];var _ref4=[],color=_ref4[0],colNumber=_ref4[1],damagedPosition=_ref4[2],location=_ref4[3],rowNumber=_ref4[4],position=_ref4[5],shipPosition=_ref4[6],spaceship=_ref4[7];return{// Размер карты
-spaceSize:8,// Кол-во флотилий
-numberOfShips:6,// Размеры флотилии
-shipSize:3,// Уничтоженные флотилии
-destroyedShips:0,// Создание позиции корабля (вертикальной или горизонтальной - случайным образом)
-get createShipPosition(){location=Math.floor(Math.random()*2),shipPosition=[];if(location===1){// horizontal
-rowNumber=Math.floor(Math.random()*this.spaceSize);colNumber=Math.ceil(Math.random()*(this.spaceSize-this.shipSize+1))}else{// vertical
-rowNumber=Math.floor(Math.random()*(this.spaceSize-this.shipSize+1));colNumber=Math.ceil(Math.random()*this.spaceSize)}for(var i=0;i<this.shipSize;i++){if(location===1){shipPosition.push(String.fromCodePoint(initCharCode+rowNumber)+(""+(colNumber+i)))}else{shipPosition.push(String.fromCodePoint(initCharCode+rowNumber+i)+(""+colNumber))}}return shipPosition},// Проверка, полностью ли подбиты три корабля
-checkDestroyedShip:function checkDestroyedShip(ship){for(var i=0;i<this.shipSize;i++){if(!ship.damage[i]){return false}}return true},// Проверка, не имеют ли созданные корабли одинаковые позиции
-checkRepeatsPosition:function checkRepeatsPosition(spaceships,position){for(var i=0;i<this.numberOfShips;i++){for(var j=0;j<this.shipSize;j++){if(spaceships[i].position.indexOf(position[j])>=0){return true}}}return false},// Генерирование будущего корабля и его позиции, проверка на незанятость данной позиции
-// и последующее добавление этой позиции в массив флотилий
-createSpaceships:function createSpaceships(){for(var i=0;i<this.numberOfShips;i++){spaceships.push(new Spaceship)}for(var _i2=0;_i2<this.numberOfShips;_i2++){do{position=this.createShipPosition}while(this.checkRepeatsPosition(spaceships,position));spaceships[_i2].position=position}this.spaceships=spaceships},// Выстрел и проверка на попадание
-shot:function shot(coordinate){for(var i=0;i<this.numberOfShips;i++){spaceship=this.spaceships[i];damagedPosition=spaceship.position.indexOf(coordinate);if(damagedPosition>=0){spaceship.damage[damagedPosition]="loss";color=spaceship.color;if(this.checkDestroyedShip(spaceship)){this.destroyedShips++;return{coordinate:coordinate,color:color,status:3}}return{coordinate:coordinate,color:color,status:1}}}return{coordinate:coordinate}}}}();var Controller=function(document){var _ref5=[],loss=_ref5[0],target=_ref5[1],targetCoordinate=_ref5[2];return{// Количество выстрелов
-shotsNumber:0,shotResult:function shotResult(coordinate){if(document.querySelector("[data-coordinate=\""+coordinate+"\"]")){loss=Model.shot(coordinate);if(loss.status===3){View.showShip(loss.coordinate,loss.color);View.displayMessage("\u0424\u043B\u043E\u0442\u0438\u043B\u0438\u044F \u0438\u0437 3-\u0445 \u043A\u043E\u0440\u0430\u0431\u043B\u0435\u0439 \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0435\u043D\u0430!");if(Model.destroyedShips===Model.numberOfShips){View.displayMessage("\u0412\u044B \u0443\u043D\u0438\u0447\u0442\u043E\u0436\u0438\u043B\u0438 \u0432\u0441\u0435 \u043A\u043E\u0440\u0430\u0431\u043B\u0438!");View.displayGameResult(Math.round(Model.numberOfShips*Model.shipSize*1000/this.shotsNumber))}}else if(loss.status===1){View.showShip(loss.coordinate,loss.color);View.displayMessage("\u041F\u043E\u043F\u0430\u0434\u0430\u043D\u0438\u0435")}else if(!loss.status&&loss.coordinate){View.showAsteroid(loss.coordinate);View.displayMessage("\u041F\u0440\u043E\u043C\u0430\u0445")}this.shotsNumber++;View.soundShot()}},shot:function shot(e){e=e||window.event;target=e.target;targetCoordinate=target.getAttribute("data-coordinate");if(!target.getAttribute("data-shot")&&targetCoordinate){Controller.shotResult(targetCoordinate)}}}}(document);(function(document){var SpaceRangers={init:function init(){this.control();this.event()},control:function control(){Model.createSpaceships();View.createGameArea(Model.spaceSize)},event:function event(){document.getElementById("startNewRound").addEventListener("click",function(){return location.reload()},false);document.getElementById("gameArea").addEventListener("click",function(e){return Controller.shot(e)},false)}};SpaceRangers.init()})(document);
+import Model from './Model';
+import View from './View';
+import Controller from './Controller';
+
+const SpaceRangers = {
+    init () {
+        this.control();
+        this.events();
+    },
+
+    control () {
+        Model.createSpaceships();
+        View.createGameArea(Model.spaceSize);
+    },
+
+    events () {
+        document.getElementById("startNewRound").addEventListener("click", () => location.reload(), false);
+        document.getElementById("gameArea").addEventListener("click", e => Controller.shot(e), false);
+    }
+};
+
+SpaceRangers.init();
