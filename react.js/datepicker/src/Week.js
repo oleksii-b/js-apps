@@ -13,35 +13,32 @@ class Week extends Component {
 
     render () {
         const currentDate = (new Date()).toDateString();
+        const getDateClass = (date) => {
+            let dateString = (new Date(this.props.currentYear, this.props.currentMonth, date)).toDateString();
 
-        let dateId = 0,
-            weekId = 0,
-            getDateClass = (date) => {
-                let dateString = (new Date(this.props.currentYear, this.props.currentMonth, date)).toDateString();
-
-                if (dateString === this.props.selectedDate) {
-                    return 'datepicker-date datepicker-date--selected-day';
-                } else if (dateString === currentDate) {
-                    return 'datepicker-date datepicker-date--current-day';
-                } else {
-                    return 'datepicker-date datepicker-date--current-month';
-                }
-            };
+            if (dateString === this.props.selectedDate) {
+                return 'datepicker-date datepicker-date--selected-day';
+            } else if (dateString === currentDate) {
+                return 'datepicker-date datepicker-date--current-day';
+            } else {
+                return 'datepicker-date datepicker-date--current-month';
+            }
+        };
 
         return (
-            <tr key={weekId++}>
+            <tr>
             {
-                this.props.week.map(dateInfo => (
-                    dateInfo.month === this.props.currentMonth ? (
-                        <td key={dateId++} className={getDateClass(dateInfo.date)} onClick={this.props.handleClick.bind(null, dateInfo.date)}>
+                this.props.week.map((dateInfo, i) => {
+                    let isMonthCurrent = dateInfo.month === this.props.currentMonth,
+                        dateClass = isMonthCurrent ? getDateClass(dateInfo.date) : 'datepicker-date',
+                        handleClick = isMonthCurrent ? this.props.handleClick.bind(null, dateInfo.date) : null;
+
+                    return (
+                        <td key={`${dateInfo.date}${dateInfo.month}`} className={dateClass} onClick={handleClick}>
                             {dateInfo.date}
                         </td>
-                    ) : (
-                        <td key={dateId++} className='datepicker-date'>
-                            {dateInfo.date}
-                        </td>
-                    )
-                ))
+                    );
+                })
             }
             </tr>
         )

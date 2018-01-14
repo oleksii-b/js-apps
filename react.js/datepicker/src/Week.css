@@ -16,12 +16,13 @@
 
 .datepicker-date--current-day:hover,
 .datepicker-date--current-month:hover {
-    background: #eee;
+    background: #fff;
 }
 
 .datepicker-date--selected-day {
     background: #fff;
-    color: maroon;
+    border: 1px solid coral;
+    color: coral;
     font-weight: bold;
     pointer-events: none;
 }
@@ -32,7 +33,6 @@
 
 .datepicker-date--current-day:after {
     border: 1px solid #aaa;
-    border-radius: 2px;
     bottom: 0;
     content: '';
     left: 0;

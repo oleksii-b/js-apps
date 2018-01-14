@@ -9,10 +9,10 @@ class App extends Component {
         const date = new Date();
 
         this.state = {
-            isDatepickerVisible: false,
             day: date.getDate(),
             month: date.getMonth(),
-            year: date.getFullYear()
+            year: date.getFullYear(),
+            isDatepickerVisible: false
         };
     }
 
@@ -32,20 +32,21 @@ class App extends Component {
 
     render () {
         let day = this.state.day > 9 ? this.state.day : `0${this.state.day}`,
-            month = this.state.month > 9 ? this.state.month + 1 : `0${this.state.month + 1}`;
+            month = this.state.month > 9 ? this.state.month + 1 : `0${this.state.month + 1}`,
+            year = this.state.year;
 
         return (
             <div className='input-date'>
                 <div className='input-date__group' onClick={this.onToggleDatepicker}>
                     <div className='input-date__field'>
-                        {`${day}/${month}/${this.state.year}`}
+                        {`${day}/${month}/${year}`}
                     </div>
 
                     <span className='input-date__icon'>&#128197;</span>
                 </div>
 
                 <Datepicker
-                    selectedDate={(new Date(this.state.year, this.state.month, this.state.day)).toDateString()}
+                    selectedDate={(new Date(year, this.state.month, this.state.day)).toDateString()}
                     isDatepickerVisible={this.state.isDatepickerVisible}
                     handleClick={this.onToggleDatepicker}
                     setDate={this.setDate} />

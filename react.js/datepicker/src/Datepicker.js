@@ -7,10 +7,11 @@ class Datepicker extends Component {
     constructor (props) {
         super(props);
 
+        const date = new Date();
+
         this.state = {
-            currentMonth: (new Date()).getMonth(),
-            currentYear: (new Date()).getFullYear(),
-            selectedDate: new Date().getDate()
+            currentMonth: date.getMonth(),
+            currentYear: date.getFullYear()
         };
     }
 
@@ -39,25 +40,24 @@ class Datepicker extends Component {
     }
 
     get currentMonth () {
-        const state = this.state;
+        const {currentYear, currentMonth} = this.state;
         const date = new Date();
 
         let currentDate = date.getDate(),
             currentDay,
-            currentMonth,
             day = 0,
             i = 0,
-            lastDate = (new Date(state.currentYear, state.currentMonth + 1, 0)).getDate(),
+            lastDate = (new Date(currentYear, currentMonth + 1, 0)).getDate(),
             month = [],
             week = [];
 
         // Last Month's Days
-        if (new Date(state.currentYear, state.currentMonth, 1).getDay() > 0) {
+        if (new Date(currentYear, currentMonth, 1).getDay() > 0) {
             do {
-                currentDay = (new Date(state.currentYear, state.currentMonth, i)).getDay();
+                currentDay = (new Date(currentYear, currentMonth, i)).getDay();
                 week[currentDay] = {
-                    date: (new Date(state.currentYear, state.currentMonth, i)).getDate(),
-                    month: state.currentMonth - 1
+                    date: (new Date(currentYear, currentMonth, i)).getDate(),
+                    month: currentMonth - 1
                 };
 
                 i--;
@@ -67,10 +67,10 @@ class Datepicker extends Component {
         }
 
         for (i = 1; i <= lastDate; i++) {
-            day = (new Date(state.currentYear, state.currentMonth, i)).getDay();
+            day = (new Date(currentYear, currentMonth, i)).getDay();
             week[day] = {
                 date: i,
-                month: state.currentMonth
+                month: currentMonth
             };
 
             if (day === 6) {
@@ -85,7 +85,7 @@ class Datepicker extends Component {
                 while (currentDay <= 6) {
                     week[currentDay] = {
                         date: ++i,
-                        month: state.currentMonth + 1
+                        month: currentMonth + 1
                    };
 
                     ++currentDay;
@@ -106,10 +106,6 @@ class Datepicker extends Component {
             day: date,
             month: this.state.currentMonth,
             year: this.state.currentYear
-        });
-
-        this.setState({
-            selectedDate: date
         });
     }
 
@@ -144,7 +140,8 @@ class Datepicker extends Component {
     }
 
     render () {
-        let datepickerClass = 'datepicker' + (this.props.isDatepickerVisible ? '' : ' datepicker--hidden');
+        let {currentMonth, currentYear} = this.state,
+            datepickerClass = 'datepicker' + (this.props.isDatepickerVisible ? '' : ' datepicker--hidden');
 
         return (
             <div className={datepickerClass}>
@@ -154,7 +151,7 @@ class Datepicker extends Component {
                             &lt;
                         </button>
 
-                        <b>{this.months[this.state.currentMonth]}, {this.state.currentYear}</b>
+                        <b>{this.months[currentMonth]}, {currentYear}</b>
 
                         <button className='datepicker__control datepicker__control--next' onClick={this.onNextMonth}>
                             &gt;
@@ -176,12 +173,12 @@ class Datepicker extends Component {
                         {
                             this.currentMonth.map((week, i) => (
                                 <Week
-                                    key={i}
-                                    week={week}
+                                    key={i + currentMonth + currentYear}
                                     selectedDate={this.props.selectedDate}
-                                    currentMonth={this.state.currentMonth}
-                                    currentYear={this.state.currentYear}
-                                    handleClick={this.onSetDate} />
+                                    currentMonth={currentMonth}
+                                    currentYear={currentYear}
+                                    handleClick={this.onSetDate}
+                                    week={week} />
                             ))
                         }
                         </tbody>
