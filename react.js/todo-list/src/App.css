@@ -1,0 +1,88 @@
+button {
+    background: transparent;
+    cursor: pointer;
+}
+
+button:focus {
+    background: gainsboro;
+    outline: 0;
+}
+
+pre {
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    text-align: center;
+}
+
+
+/** Tasks **/
+
+.tasks {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 15px auto;
+    width: 400px;
+}
+
+.tasks button {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    margin: 2px 5px;
+    text-decoration: underline;
+}
+
+.tasks td,
+.tasks th {
+    border: 1px solid #ccc;
+    padding: 6px;
+}
+
+.tasks td {
+    vertical-align: top;
+}
+
+.task-date-legend {
+    text-align: center;
+    min-width: 90px;
+    width: 90px;
+}
+
+.task-info-legend {
+    text-align: center;
+}
+
+.task-options-legend {
+    width: 70px;
+}
+
+.no-tasks {
+    text-align: center;
+}
+
+.no-tasks__text {
+    display: block;
+    padding: 10px 0;
+}
+
+
+/** Task info **/
+
+.task-info__title,
+.update-task__title {
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.task-info__title {
+    display: inline-block;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.task-info__description {
+    margin: 5px 0;
+}

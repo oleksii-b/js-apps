@@ -1,0 +1,25 @@
+.add-task__form-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.add-task__form-group {
+    margin: 15px 0;
+}
+
+.add-task__title,
+.add-task__description {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: block;
+    margin-top: 5px;
+    max-width: 260px;
+    min-width: 260px;
+    padding: 5px 8px;
+    width: 100%;
+}
+
+.error-message {
+    color: red;
+    margin-top: 5px;
+}

@@ -1,0 +1,32 @@
+.layout-header {
+    background: lightsteelblue;
+    border-top: 5px solid cornflowerblue;
+    padding-bottom: 5px;
+}
+
+.layout-header__container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 992px;
+}
+
+.layout-header__bar {
+    padding: 10px;
+}
+
+.main-title {
+    color: darkblue; 
+    font: normal 30px Impact, fantasy;
+    padding: 10px;
+}
+
+.add-task-btn {
+    background: steelblue;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    padding: 5px 10px;
+}
