@@ -54,8 +54,3 @@
 .datepicker__control--next {
     float: right;
 }
-
-.datepicker__thead-row-item {
-    font-size: 12px;
-    text-align: center;
-}

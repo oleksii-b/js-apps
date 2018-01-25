@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import Datepicker from './Datepicker';
+import PropTypes from 'prop-types';
+
+import DatePicker from './DatePicker';
 import './App.css';
 
+
 class App extends Component {
-    constructor (props) {
-        super(props);
+    constructor () {
+        super();
 
         const date = new Date();
 
@@ -13,6 +16,18 @@ class App extends Component {
             month: date.getMonth(),
             year: date.getFullYear(),
             isDatepickerVisible: false
+        };
+    }
+
+    static childContextTypes = {
+        selectedDate: PropTypes.string
+    }
+  
+    getChildContext() {
+        const {day, month, year} = this.state;
+
+        return {
+            selectedDate: (new Date(year, month, day)).toDateString()
         };
     }
 
@@ -31,22 +46,22 @@ class App extends Component {
     }
 
     render () {
-        let day = this.state.day > 9 ? this.state.day : `0${this.state.day}`,
-            month = this.state.month > 9 ? this.state.month + 1 : `0${this.state.month + 1}`,
-            year = this.state.year;
+        let {day, month} = this.state;
+
+        day = day > 9 ? day : `0${day}`;
+        month = month > 9 ? month + 1 : `0${month + 1}`;
 
         return (
             <div className='input-date'>
                 <div className='input-date__group' onClick={this.onToggleDatepicker}>
                     <div className='input-date__field'>
-                        {`${day}/${month}/${year}`}
+                        {`${day}/${month}/${this.state.year}`}
                     </div>
 
                     <span className='input-date__icon'>&#128197;</span>
                 </div>
 
-                <Datepicker
-                    selectedDate={(new Date(year, this.state.month, this.state.day)).toDateString()}
+                <DatePicker
                     isDatepickerVisible={this.state.isDatepickerVisible}
                     handleClick={this.onToggleDatepicker}
                     setDate={this.setDate} />

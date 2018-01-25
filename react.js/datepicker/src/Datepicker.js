@@ -1,9 +1,26 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Week from './Week';
-import './Datepicker.css';
 
-class Datepicker extends Component {
+import Calendar from './Calendar';
+import './DatePicker.css';
+
+
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
+
+export default class Datepicker extends Component {
     constructor (props) {
         super(props);
 
@@ -18,25 +35,7 @@ class Datepicker extends Component {
     static propTypes = {
         setDate: PropTypes.func.isRequired,
         handleClick: PropTypes.func.isRequired,
-        selectedDate: PropTypes.string.isRequired,
         isDatepickerVisible: PropTypes.bool.isRequired
-    }
-
-    get months () {
-        return [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
     }
 
     get currentMonth () {
@@ -140,7 +139,8 @@ class Datepicker extends Component {
     }
 
     render () {
-        let {currentMonth, currentYear} = this.state,
+        let self = this,
+            {currentMonth, currentYear} = this.state,
             datepickerClass = 'datepicker' + (this.props.isDatepickerVisible ? '' : ' datepicker--hidden');
 
         return (
@@ -151,42 +151,21 @@ class Datepicker extends Component {
                             &lt;
                         </button>
 
-                        <b>{this.months[currentMonth]}, {currentYear}</b>
+                        <b>{months[currentMonth]}, {currentYear}</b>
 
                         <button className='datepicker__control datepicker__control--next' onClick={this.onNextMonth}>
                             &gt;
                         </button>
                     </div>
 
-                    <table className='datepicker__table'>
-                        <thead className='datepicker__thead'>
-                            <tr className='datepicker__thead-row'>
-                            {
-                                ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, i) => (
-                                    <th key={i} className="datepicker__thead-row-item">{day}</th>
-                                ))
-                            }
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                        {
-                            this.currentMonth.map((week, i) => (
-                                <Week
-                                    key={i + currentMonth + currentYear}
-                                    selectedDate={this.props.selectedDate}
-                                    currentMonth={currentMonth}
-                                    currentYear={currentYear}
-                                    handleClick={this.onSetDate}
-                                    week={week} />
-                            ))
-                        }
-                        </tbody>
-                    </table>
+                    <Calendar {...{
+                        currentMonthDays: this.currentMonth,
+                        handleClick: this.onSetDate,
+                        currentMonth,
+                        currentYear
+                    }} />
                 </div>
             </div>
         );
     }
 }
-
-export default Datepicker;
