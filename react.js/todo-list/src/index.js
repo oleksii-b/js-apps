@@ -1,57 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 import './index.css';
-import App from './App';
+import reducers from './reducers';
+import App from './components/App';
+import NotFound from './components/NotFound';
 
 
-const getInitialState = () => {
-    let tasks = localStorage.getItem('tasks');
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-    try {
-        tasks = JSON.parse(tasks);
-        tasks = tasks instanceof Array ? tasks : [];
-    } catch (e) {
-        tasks = [];
-    }
-
-    return tasks;
-}
-
-const store = createStore((state = getInitialState(), action) => {
-    let newState = [...state];
-
-    switch (action.type) {
-        case 'add':
-            let time = Date.now();
-
-            if (newState.length) {
-                action.task.id = newState[newState.length - 1].id < time ? time : newState[newState.length - 1].id + 1;
-            } else {
-                action.task.id = time;
-            }
-
-            return [...newState, action.task];
-        case 'remove':
-            return newState.filter((task) => {
-                return task.id !== action.id;
-            });
-        case 'update':
-            return newState.map((task) => {
-                return task.id === action.task.id ? Object.assign(task, action.task) : task;
-            });
-        default:
-            return state;
-    }
-}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-store.subscribe(() => localStorage.setItem('tasks', JSON.stringify(store.getState())));
+store.subscribe(() => localStorage.setItem('tasks', JSON.stringify(store.getState().tasks)));
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <BrowserRouter>
+            <Switch>
+                <Route exact path='/' component={App} />
+                <Route path='/tasks/:id?' component={App} />
+                <Route component={NotFound} />
+            </Switch>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

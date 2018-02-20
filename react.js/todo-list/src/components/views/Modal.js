@@ -4,23 +4,23 @@ import PropTypes from 'prop-types';
 
 import './Modal.css';
 
+
+let modalRoot = document.getElementById('modalDialog');
+
+if (!modalRoot) {
+    modalRoot = document.createElement('div');
+    modalRoot.id = 'modalDialog';
+
+    document.body.appendChild(modalRoot);
+}
+
 Modal.propTypes = {
     onClose: PropTypes.func.isRequired,
     dialogClass: PropTypes.string,
     buttons: PropTypes.array
-};
+}
 
 export default function Modal(props) {
-    if (document.getElementById('modalDialog')) {
-        var root = document.getElementById('modalDialog');
-    } else {
-        var root = document.createElement('div');
-
-        root.id = 'modalDialog';
-
-        document.body.appendChild(root);
-    }
-
     let dialogClass = 'modal-dialog' + (props.dialogClass ? ` ${props.dialogClass}` : ''),
         cancelText = props.cancelText ? props.cancelText : 'Ok',
         handleClick = (e) => e.stopPropagation();
@@ -48,7 +48,7 @@ export default function Modal(props) {
                     </div>
                 </div>
             </div>,
-            root
+            modalRoot
         )
     );
-};
+}
