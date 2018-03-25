@@ -1,0 +1,67 @@
+@import 'core/index.less';
+@import 'layout/index.less';
+@import 'profile/index.less';
+
+
+.container {
+    width: 100%;
+
+    @media (min-width: 1366px) {
+        width: 1320px;
+    }
+}
+
+.dropdown {
+    width: 100%;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    margin: -2px 1px;
+    max-height: 180px;
+    overflow: auto;
+    padding: 0;
+    width: calc(100% - 2px);
+
+    a[role='menuitem'] {
+        padding: 8px 16px;
+        white-space: normal;
+    }
+}
+
+.layout-header {
+    background: @chathams-blue;
+    color: #fff;
+
+    &__container {
+        align-items: center;
+        display: flex;
+        overflow: hidden;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+}
+
+.layout-main {
+    margin: 24px auto;
+
+    &__container {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+        display: flex;
+    }
+}
+
+.layout-aside {
+    background: #e9f0f5;
+    border: 1px solid #fff;
+    min-width: 220px;
+    width: 220px;
+}
+
+.layout-content {
+    background: #fff;
+    flex-grow: 1;
+    padding: 38px 60px;
+}

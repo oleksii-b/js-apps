@@ -1,0 +1,115 @@
+@import 'offices/index.less';
+@import 'sidebar-menu/index.less';
+
+@import 'Aside.less';
+@import 'Progress.less';
+
+
+.btn-group-profile {
+    margin: 15px 12px 0;
+    text-align: right;
+
+    @media (min-width: 1366px) {
+        margin-top: 2px;
+        width: 200px;
+    }
+
+    &__item {
+        display: inline-block;
+        margin: 0 5px 10px;
+    }
+}
+
+.btn-profile {
+    .btn-profile();
+
+    border-color: #d6d6d6;
+
+    &--sm {
+        padding: 4px 16px;
+    }
+
+    &--lg {
+        .btn-lg-profile();
+    }
+
+    &--primary {
+        .btn-primary-profile();
+    }
+
+    &--cancel {
+        border-color: @blue-bayoux;
+        border-radius: 4px;
+    }
+
+    &--remove {
+        background: #f7f8fa;
+        font-weight: normal;
+    }
+}
+
+.profile-info {
+
+    &__title {
+        font-size: 32px;
+        line-height: 48px;
+        margin: 0 auto 20px;
+        text-transform: uppercase;
+    }
+
+    &__title-secondary {
+        color: #b7bdc4;
+    }
+
+    &__content {
+        border-bottom: 2px dotted #b7bdc5;
+        border-top: 2px dotted #b7bdc5;
+        margin: 35px 0;
+        padding: 35px 0;
+    }
+}
+
+.profile-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px -16px 0;
+
+    &__group {
+
+        &:last-child {
+            text-align: right;
+        }
+    }
+    
+    &__link {
+        display: inline-block;
+        margin: 0 55px;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    &__btn {
+        .btn-profile();
+        .btn-lg-profile();
+
+        display: inline-block;
+        margin: 0 16px 16px;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    &__btn--primary {
+        .btn-primary-profile();
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+}

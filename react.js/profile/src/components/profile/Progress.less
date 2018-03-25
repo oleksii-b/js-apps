@@ -1,0 +1,53 @@
+.circular-propress {
+    @bg-color-content: @chathams-blue;
+    @bg-color-progress: #84a5bf;
+    @border-width: 8px;
+    @size: 110px;
+
+    background: @bg-color-progress;
+    border-radius: 50%;
+    height: @size;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    width: @size;
+
+    &:before {
+        border-radius: 50%;
+        border-right: @size/2 solid #fff;
+        content: '';
+        height: @size;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: @size;
+    }
+
+    &__sector {
+        background: transparent;
+        border-radius: 50%;
+        border-right: @size/2 solid #fff;
+        height: @size + 2;
+        left: -1px;
+        position: absolute;
+        top: -1px;
+        width: @size + 2;
+        z-index: 1;
+
+        &:first-child {
+            border-color: @bg-color-progress;
+        }
+    }
+
+    &__content {
+        background: @bg-color-content;
+        border-radius: 50%;
+        color: #fff;
+        height: @size - @border-width * 2;
+        left: @border-width;
+        position: absolute;
+        top: @border-width;
+        width: @size - @border-width * 2;
+        z-index: 2;
+    }
+}
