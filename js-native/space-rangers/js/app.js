@@ -2,6 +2,7 @@ import Model from './Model';
 import View from './View';
 import Controller from './Controller';
 
+
 const SpaceRangers = {
     init () {
         this.control();
@@ -14,8 +15,8 @@ const SpaceRangers = {
     },
 
     events () {
-        document.getElementById("startNewRound").addEventListener("click", () => location.reload(), false);
-        document.getElementById("gameArea").addEventListener("click", e => Controller.shot(e), false);
+        document.getElementById('startNewRound').addEventListener('click', () => location.reload(), false);
+        document.getElementById('gameArea').addEventListener('click', e => Controller.shot(e), false);
     }
 };
 

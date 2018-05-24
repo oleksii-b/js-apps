@@ -2,7 +2,7 @@
   "name": "space-rangers",
   "description": "Game 'Space Rangers' based on MVC concept",
   "scripts": {
-    "start": "watchify --ignore js/app.bundle.js js/app.js -o js/app.bundle.js -d",
+    "start": "watchify --ignore js/app.bundle.js --debug js/app.js -o js/app.bundle.js -d",
     "build": "browserify --ignore js/app.bundle.js js/app.js -o js/app.bundle.js -d"
   },
   "browserify": {
